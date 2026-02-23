@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CreatorLink — The Link-in-Bio for Indian Instagram Creators</title>
+<meta name="description" content="CreatorLink is India's #1 link-in-bio platform for Instagram creators. Sell digital products, accept UPI payments, and auto-deliver via WhatsApp. Free to start."/>
+<meta property="og:title" content="CreatorLink — Link-in-Bio for Indian Creators"/>
+<meta property="og:description" content="Sell courses, ebooks & consultations from your Instagram bio. UPI checkout. WhatsApp delivery. Zero tech skills needed. Join 2,400+ Indian creators."/>
+<meta property="og:image" content="https://placehold.co/1200x630/0A0A0A/FF4D00?text=CreatorLink+%E2%80%94+Link-in-Bio+for+Indian+Creators"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://creatorlink.in"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="CreatorLink — Link-in-Bio Built for India"/>
+<meta name="twitter:description" content="UPI payments + WhatsApp delivery + beautiful storefronts. Built for Indian Instagram creators."/>
+<meta name="twitter:image" content="https://placehold.co/1200x630/0A0A0A/FF4D00?text=CreatorLink+%E2%80%94+Link-in-Bio+for+Indian+Creators"/>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Syne:wght@400;500;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --orange: #FF4D00;
+    --gold: #FFB800;
+    --dark: #0A0A0A;
+    --darker: #050505;
+    --card: #111111;
+    --border: rgba(255,255,255,0.07);
+    --text: #E8E8E8;
+    --muted: #666;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--darker);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--orange);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease, width 0.2s, height 0.2s;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(255,77,0,0.5);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transition: all 0.08s linear;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9997;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    background: rgba(5,5,5,0.85);
+    backdrop-filter: blur(20px);
+  }
+
+  .logo {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  .logo span { color: var(--orange); }
+
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .btn-nav {
+    background: var(--orange);
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: none;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.2px;
+  }
+  .btn-nav:hover { background: #ff6620; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 140px 20px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255,77,0,0.12) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-glow-2 {
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(255,184,0,0.07) 0%, transparent 70%);
+    top: 30%; right: 10%;
+    pointer-events: none;
+  }
+
+  /* Grid background */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,77,0,0.1);
+    border: 1px solid rgba(255,77,0,0.25);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #ff8a5c;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+    animation: fadeInDown 0.6s ease both;
+  }
+  .badge-dot {
+    width: 6px; height: 6px;
+    background: var(--orange);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(42px, 7vw, 88px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -3px;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 0.7s ease 0.1s both;
+  }
+
+  h1 .line1 { display: block; color: var(--text); }
+  h1 .line2 { display: block; color: var(--text); }
+  h1 .accent {
+    background: linear-gradient(135deg, var(--orange), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 0.7s ease 0.2s both;
+    font-weight: 300;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 0.7s ease 0.3s both;
+  }
+
+  .btn-primary {
+    background: var(--orange);
+    color: white;
+    border: none;
+    padding: 15px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: none;
+    transition: all 0.25s;
+    font-family: 'DM Sans', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(255,255,255,0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(255,77,0,0.35); }
+  .btn-primary:hover::after { opacity: 1; }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 15px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: none;
+    transition: all 0.25s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    margin-top: 72px;
+    padding-top: 48px;
+    border-top: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 0.7s ease 0.4s both;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--text), var(--muted));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 0;
+    background: rgba(255,77,0,0.03);
+  }
+  .marquee {
+    display: flex;
+    gap: 48px;
+    animation: marquee 20s linear infinite;
+    width: max-content;
+  }
+  .marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--muted);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  .marquee-dot { width: 4px; height: 4px; background: var(--orange); border-radius: 50%; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* SECTIONS */
+  section { padding: 100px 20px; position: relative; }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.7;
+    max-width: 480px;
+    font-weight: 300;
+  }
+
+  /* FEATURES GRID */
+  .features-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 64px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .feature-card {
+    background: var(--card);
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    border: 1px solid var(--border);
+  }
+  .feature-card:hover { background: #161616; border-color: rgba(255,77,0,0.2); }
+  .feature-card:hover .feature-icon { background: rgba(255,77,0,0.15); color: var(--orange); }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,77,0,0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .feature-card:hover::before { opacity: 1; }
+
+  .feature-icon {
+    width: 44px; height: 44px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+  }
+
+  .feature-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+  }
+  .feature-desc { color: var(--muted); font-size: 14px; line-height: 1.6; font-weight: 300; }
+
+  /* DEMO PHONE */
+  .demo-section {
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .demo-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .phone-mockup {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .phone-frame {
+    width: 260px;
+    height: 520px;
+    background: #0d0d0d;
+    border-radius: 36px;
+    border: 2px solid rgba(255,255,255,0.1);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 
+      0 0 0 8px rgba(255,255,255,0.02),
+      0 40px 80px rgba(0,0,0,0.6),
+      inset 0 0 0 1px rgba(255,255,255,0.04);
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-12px) rotate(-2deg); }
+  }
+
+  .phone-notch {
+    width: 100px; height: 28px;
+    background: #0d0d0d;
+    border-radius: 0 0 16px 16px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .phone-screen {
+    background: linear-gradient(160deg, #1a0a00, #0d0d0d);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 20px 24px;
+    position: absolute;
+    inset: 0;
+  }
+
+  .phone-avatar {
+    width: 68px; height: 68px;
+    background: linear-gradient(135deg, var(--orange), var(--gold));
+    border-radius: 50%;
+    margin: 32px auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+  }
+
+  .phone-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .phone-bio {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin: 4px 0 16px;
+    line-height: 1.5;
+  }
+
+  .phone-link {
+    width: 100%;
+    background: rgba(255,77,0,0.12);
+    border: 1px solid rgba(255,77,0,0.2);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .phone-link-icon {
+    width: 28px; height: 28px;
+    background: var(--orange);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .phone-link-text { font-size: 12px; font-weight: 500; }
+
+  .phone-link.alt {
+    background: rgba(255,184,0,0.08);
+    border-color: rgba(255,184,0,0.2);
+  }
+  .phone-link.alt .phone-link-icon { background: var(--gold); }
+
+  .phone-link.dark {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.07);
+  }
+  .phone-link.dark .phone-link-icon { background: #333; }
+
+  .demo-text .section-sub { max-width: 380px; margin-bottom: 32px; }
+
+  .feature-list { display: flex; flex-direction: column; gap: 16px; }
+  .feature-list-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .check {
+    width: 22px; height: 22px;
+    background: rgba(255,77,0,0.12);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 11px;
+    margin-top: 1px;
+  }
+  .feature-list-text { font-size: 15px; color: var(--muted); font-weight: 300; }
+  .feature-list-text strong { color: var(--text); font-weight: 500; }
+
+  /* PRICING */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 64px;
+  }
+
+  .pricing-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 40px 32px;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .pricing-card.popular {
+    background: #0f0f0f;
+    border-color: rgba(255,77,0,0.4);
+    transform: translateY(-8px);
+  }
+
+  .popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--orange);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 100px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .plan-name {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .plan-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin-bottom: 4px;
+  }
+  .plan-price span { font-size: 20px; color: var(--muted); vertical-align: top; margin-top: 12px; display: inline-block; }
+  .plan-period { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
+
+  .plan-features { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+  .plan-feature { display: flex; gap: 10px; align-items: center; font-size: 14px; color: var(--muted); font-weight: 300; }
+  .plan-feature::before { content: '✓'; color: var(--orange); font-weight: 700; }
+
+  .btn-plan {
+    width: 100%;
+    padding: 13px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: none;
+    transition: all 0.25s;
+    font-family: 'DM Sans', sans-serif;
+    text-align: center;
+    border: none;
+  }
+  .btn-plan-primary { background: var(--orange); color: white; }
+  .btn-plan-primary:hover { background: #ff6620; }
+  .btn-plan-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .btn-plan-ghost:hover { border-color: rgba(255,255,255,0.2); }
+
+  /* TESTIMONIALS */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 60px;
+  }
+
+  .testimonial-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 28px;
+    border-radius: 2px;
+    transition: border-color 0.3s;
+  }
+  .testimonial-card:hover { border-color: rgba(255,77,0,0.2); }
+
+  .stars { color: var(--gold); font-size: 14px; margin-bottom: 14px; letter-spacing: 2px; }
+  .testimonial-text { font-size: 14px; line-height: 1.7; color: var(--muted); font-weight: 300; margin-bottom: 20px; font-style: italic; }
+
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .author-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--orange), var(--gold));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .author-name { font-size: 14px; font-weight: 600; }
+  .author-handle { font-size: 12px; color: var(--muted); }
+
+  /* CTA SECTION */
+  .cta-section {
+    text-align: center;
+    background: linear-gradient(160deg, rgba(255,77,0,0.06) 0%, transparent 60%);
+    border-top: 1px solid var(--border);
+  }
+
+  .cta-section h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+    line-height: 1.1;
+  }
+
+  .cta-sub { color: var(--muted); font-size: 18px; margin-bottom: 40px; font-weight: 300; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .footer-logo span { color: var(--orange); }
+  .footer-copy { font-size: 13px; color: var(--muted); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--text); }
+
+  /* ANIMATIONS */
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: all 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (hover: none) or (pointer: coarse) {
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+    .btn-nav, .btn-primary, .btn-ghost, .btn-plan { cursor: pointer; }
+  }
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .hero-stats { gap: 24px; }
+    .features-header { grid-template-columns: 1fr; gap: 20px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .demo-inner { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-card.popular { transform: none; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+    .footer-links { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Creator<span>Link</span></div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#demo">Demo</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#reviews">Reviews</a>
+    <button class="btn-nav">Start Free →</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+
+  <div class="badge">
+    <div class="badge-dot"></div>
+    Built for Indian Creators · UPI Ready
+  </div>
+
+  <h1>
+    <span class="line1">Your Link-in-Bio.</span>
+    <span class="line2">Your <span class="accent">Empire.</span></span>
+  </h1>
+
+  <p class="hero-sub">
+    Sell courses, ebooks & consultations directly from your Instagram bio. UPI checkout. WhatsApp delivery. Zero tech knowledge needed.
+  </p>
+
+  <div class="hero-cta">
+    <!-- WAITLIST FORM -->
+    <form id="waitlistForm" onsubmit="submitWaitlist(event)" style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center; width:100%; max-width:480px;">
+      <input
+        type="email"
+        id="waitlistEmail"
+        placeholder="Enter your email to join waitlist"
+        required
+        style="
+          flex:1; min-width:220px;
+          background: rgba(255,255,255,0.06);
+          border: 1px solid rgba(255,255,255,0.12);
+          color: var(--text);
+          padding: 14px 20px;
+          border-radius: 8px;
+          font-size: 15px;
+          font-family: 'DM Sans', sans-serif;
+          outline: none;
+          transition: border-color 0.2s;
+        "
+        onfocus="this.style.borderColor='rgba(255,77,0,0.5)'"
+        onblur="this.style.borderColor='rgba(255,255,255,0.12)'"
+      />
+      <button type="submit" class="btn-primary" id="waitlistBtn" aria-label="Join Waitlist">
+        Join Waitlist →
+      </button>
+    </form>
+
+    <!-- SUCCESS MESSAGE (hidden by default) -->
+    <div id="waitlistSuccess" style="display:none; flex-direction:column; align-items:center; gap:8px;">
+      <div style="
+        background: rgba(0,200,100,0.1);
+        border: 1px solid rgba(0,200,100,0.25);
+        color: #4ade80;
+        padding: 14px 28px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 500;
+      ">🎉 You're on the waitlist! We'll email you when we launch.</div>
+    </div>
+
+    <button class="btn-ghost" onclick="openDemo()" style="margin-top:4px;">
+      👀 See Live Demo
+    </button>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num"> 2,400+</div>
+      <div class="stat-label">Active creators</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">₹42L</div>
+      <div class="stat-label">Creator earnings</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">98%</div>
+      <div class="stat-label">Delivery success</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">60 sec</div>
+      <div class="stat-label">Setup time</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <div class="marquee-item"><div class="marquee-dot"></div> UPI Payments</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> WhatsApp Auto-Delivery</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Razorpay Integration</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Custom Storefront</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Analytics Dashboard</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> GST Invoices</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Discount Codes</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Abandoned Cart Recovery</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> UPI Payments</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> WhatsApp Auto-Delivery</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Razorpay Integration</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Custom Storefront</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Analytics Dashboard</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> GST Invoices</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Discount Codes</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Abandoned Cart Recovery</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="features-header reveal">
+      <div>
+        <div class="section-label">Everything You Need</div>
+        <h2 class="section-title">Built for the Indian<br/>creator economy</h2>
+      </div>
+      <p class="section-sub">No more lost sales because your buyer doesn't have an international card. Accept UPI, accept wallets, accept everything.</p>
+    </div>
+
+    <div class="features-grid reveal">
+      <div class="feature-card">
+        <div class="feature-icon">🔗</div>
+        <div class="feature-title">Unlimited Links</div>
+        <div class="feature-desc">Add as many links as you want. Products, social profiles, YouTube videos, calendars — all in one place.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💳</div>
+        <div class="feature-title">UPI Checkout</div>
+        <div class="feature-desc">Native Razorpay integration. Your buyers pay with PhonePe, GPay, Paytm, cards, or EMI in 10 seconds flat.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📲</div>
+        <div class="feature-title">WhatsApp Delivery</div>
+        <div class="feature-desc">Product links, course access, and PDF downloads delivered to buyer's WhatsApp automatically after payment.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <div class="feature-title">5 Indian Themes</div>
+        <div class="feature-desc">Saffron, Midnight, Blush, Forest, Royal — designed with Indian aesthetic sensibility. Mobile-first always.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">Sales Analytics</div>
+        <div class="feature-desc">Real-time revenue, top products, traffic sources, and conversion rates — all in INR, built for Indian creators.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <div class="feature-title">GST Invoices</div>
+        <div class="feature-desc">Auto-generated GST-compliant invoices for every sale. Monthly reports ready for your CA in one click.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section class="demo-section" id="demo">
+  <div class="container">
+    <div class="demo-inner">
+      <div class="phone-mockup reveal">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="phone-notch"></div>
+            <div class="phone-avatar">🔥</div>
+            <div class="phone-name">Priya Sharma</div>
+            <div class="phone-bio">Fitness Coach · ₹2Cr+ helped clients earn</div>
+            <div class="phone-link">
+              <div class="phone-link-icon">📚</div>
+              <div class="phone-link-text">6-Week Fat Loss Program — ₹1,999</div>
+            </div>
+            <div class="phone-link alt">
+              <div class="phone-link-icon">🎥</div>
+              <div class="phone-link-text">Free Nutrition Masterclass</div>
+            </div>
+            <div class="phone-link dark">
+              <div class="phone-link-icon">📞</div>
+              <div class="phone-link-text">Book 1:1 Consultation — ₹3,500</div>
+            </div>
+            <div class="phone-link">
+              <div class="phone-link-icon">💪</div>
+              <div class="phone-link-text">Home Workout PDF Bundle — ₹499</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-text reveal">
+        <div class="section-label">See It Live</div>
+        <h2 class="section-title">Your store.<br/>Live in 60 seconds.</h2>
+        <p class="section-sub">Just enter your Instagram handle and we build your store automatically. No design skills, no tech knowledge, no team needed.</p>
+
+        <div class="feature-list">
+          <div class="feature-list-item">
+            <div class="check">✓</div>
+            <div class="feature-list-text"><strong>Auto-import from Instagram</strong> — profile photo, bio, and name pulled instantly</div>
+          </div>
+          <div class="feature-list-item">
+            <div class="check">✓</div>
+            <div class="feature-list-text"><strong>Add products in 30 seconds</strong> — upload a PDF or paste a link, set price, done</div>
+          </div>
+          <div class="feature-list-item">
+            <div class="check">✓</div>
+            <div class="feature-list-text"><strong>Money hits your account in 48 hours</strong> — T+2 Razorpay settlement directly to your bank</div>
+          </div>
+          <div class="feature-list-item">
+            <div class="check">✓</div>
+            <div class="feature-list-text"><strong>Zero platform commission</strong> — we only charge a flat monthly fee, never % of your sales</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container" style="text-align:center;">
+    <div class="reveal">
+      <div class="section-label">Simple Pricing</div>
+      <h2 class="section-title">No hidden fees.<br/>No revenue cuts.</h2>
+      <p class="section-sub" style="margin: 0 auto;">We charge a flat monthly fee. Your revenue is 100% yours minus Razorpay's 2% per transaction.</p>
+    </div>
+
+    <div class="pricing-grid reveal">
+      <div class="pricing-card">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price"><span>₹</span>0</div>
+        <div class="plan-period">forever free</div>
+        <div class="plan-features">
+          <div class="plan-feature">3 products</div>
+          <div class="plan-feature">CreatorLink subdomain</div>
+          <div class="plan-feature">UPI checkout</div>
+          <div class="plan-feature">WhatsApp delivery</div>
+          <div class="plan-feature">Basic analytics</div>
+        </div>
+        <button class="btn-plan btn-plan-ghost">Get Started Free</button>
+      </div>
+
+      <div class="pricing-card popular">
+        <div class="popular-badge">MOST POPULAR</div>
+        <div class="plan-name">Growth</div>
+        <div class="plan-price"><span>₹</span>999</div>
+        <div class="plan-period">per month</div>
+        <div class="plan-features">
+          <div class="plan-feature">Unlimited products</div>
+          <div class="plan-feature">Custom domain</div>
+          <div class="plan-feature">Upsell funnels</div>
+          <div class="plan-feature">Abandoned cart recovery</div>
+          <div class="plan-feature">GST invoices</div>
+          <div class="plan-feature">Advanced analytics</div>
+          <div class="plan-feature">Priority support</div>
+        </div>
+        <button class="btn-plan btn-plan-primary">Start 14-Day Free Trial →</button>
+      </div>
+
+      <div class="pricing-card">
+        <div class="plan-name">Pro</div>
+        <div class="plan-price"><span>₹</span>2,499</div>
+        <div class="plan-period">per month</div>
+        <div class="plan-features">
+          <div class="plan-feature">Everything in Growth</div>
+          <div class="plan-feature">Team access (3 seats)</div>
+          <div class="plan-feature">White-label option</div>
+          <div class="plan-feature">API access</div>
+          <div class="plan-feature">Dedicated account manager</div>
+          <div class="plan-feature">Custom integrations</div>
+        </div>
+        <button class="btn-plan btn-plan-ghost">Contact Sales</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="reviews" style="background: var(--card); border-top: 1px solid var(--border);">
+  <div class="container" style="text-align:center;">
+    <div class="reveal">
+      <div class="section-label">Creator Stories</div>
+      <h2 class="section-title">They made the switch.<br/>Their revenue didn't look back.</h2>
+    </div>
+
+    <div class="testimonials-grid reveal">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">"Made ₹1.2L in my first month. My followers can finally buy from me without needing an international card. This is what India needed."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">R</div>
+          <div>
+            <div class="author-name">Rahul Mehta</div>
+            <div class="author-handle">@rahulfitnesscoach · 180K followers</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">"The WhatsApp delivery blew my mind. Customer pays, gets their PDF in 30 seconds, I get the money in 2 days. I haven't manually sent a file in 3 months."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div>
+            <div class="author-name">Ananya Singh</div>
+            <div class="author-handle">@ananyalearns · 95K followers</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">"Switched from Stan Store because UPI wasn't supported there. CreatorLink had me set up in an hour. My conversion rate jumped 3x because UPI is so smooth."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">V</div>
+          <div>
+            <div class="author-name">Vikram Nair</div>
+            <div class="author-handle">@vikramfinance · 220K followers</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container reveal">
+    <h2>Ready to turn your<br/><span style="background: linear-gradient(135deg, var(--orange), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Instagram into income?</span></h2>
+    <p class="cta-sub">Join 2,400+ Indian creators already earning with CreatorLink.</p>
+    <form onsubmit="submitWaitlist(event)" style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; max-width:460px; margin:0 auto 16px;">
+      <input
+        type="email"
+        placeholder="Your email address"
+        required
+        style="
+          flex:1; min-width:200px;
+          background: rgba(255,255,255,0.06);
+          border: 1px solid rgba(255,255,255,0.12);
+          color: var(--text);
+          padding: 15px 20px;
+          border-radius: 8px;
+          font-size: 15px;
+          font-family: 'DM Sans', sans-serif;
+          outline: none;
+        "
+        onfocus="this.style.borderColor='rgba(255,77,0,0.5)'"
+        onblur="this.style.borderColor='rgba(255,255,255,0.12)'"
+      />
+      <button type="submit" class="btn-primary" style="font-size:16px; padding:15px 30px;" aria-label="Get Early Access">
+        Get Early Access →
+      </button>
+    </form>
+    <p style="margin-top:20px; font-size:13px; color: var(--muted);">No credit card required · Free forever plan available · Setup in 60 seconds</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Creator<span>Link</span></div>
+  <div class="footer-copy">© 2026 CreatorLink. Made in 🇮🇳 India.</div>
+  <div class="footer-links">
+    <a href="#privacy">Privacy Policy</a>
+    <a href="#terms">Terms of Use</a>
+    <a href="mailto:hello@creatorlink.in">Support</a>
+    <a href="https://twitter.com/creatorlinkin" target="_blank" rel="noopener">Twitter</a>
+  </div>
+</footer>
+
+
+<!-- ===== LIVE DEMO MODAL ===== -->
+<div id="demoModal" style="
+  display:none;
+  position:fixed; inset:0; z-index:10000;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(12px);
+  align-items:center; justify-content:center;
+  padding:20px;
+">
+  <div style="
+    background: #111;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    width:100%; max-width:900px;
+    max-height:90vh; overflow-y:auto;
+    position:relative;
+    padding: 48px 40px;
+  ">
+    <!-- Close button -->
+    <button onclick="closeDemo()" style="
+      position:absolute; top:20px; right:20px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text); border-radius:50%;
+      width:36px; height:36px; font-size:18px;
+      cursor:pointer; display:flex; align-items:center; justify-content:center;
+    ">✕</button>
+
+    <div style="text-align:center; margin-bottom:40px;">
+      <div style="font-size:11px; letter-spacing:3px; color:var(--orange); font-weight:600; margin-bottom:12px;">LIVE DEMO</div>
+      <h2 style="font-family:'Syne',sans-serif; font-size:32px; font-weight:800; letter-spacing:-1px; margin-bottom:8px;">This is what your store looks like</h2>
+      <p style="color:var(--muted); font-size:15px;">A real creator's CreatorLink page — try clicking the product links</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start;">
+
+      <!-- FAKE CREATOR PHONE -->
+      <div style="display:flex; justify-content:center;">
+        <div style="
+          width:280px;
+          background:#0d0d0d;
+          border-radius:36px;
+          border:2px solid rgba(255,255,255,0.1);
+          overflow:hidden;
+          box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+          padding-bottom:24px;
+        ">
+          <!-- Profile -->
+          <div style="text-align:center; padding:28px 20px 0;">
+            <div style="
+              width:76px; height:76px;
+              background: linear-gradient(135deg,#FF4D00,#FFB800);
+              border-radius:50%; margin:0 auto 12px;
+              display:flex; align-items:center; justify-content:center;
+              font-size:32px;
+            ">💪</div>
+            <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:16px;">Priya Sharma</div>
+            <div style="font-size:12px; color:var(--muted); margin:4px 0 6px;">Fitness Coach · Mumbai 🇮🇳</div>
+            <div style="display:flex; justify-content:center; gap:12px; font-size:12px; color:var(--muted); margin-bottom:20px;">
+              <span>📸 @priyafitlife</span>
+              <span>👥 180K</span>
+            </div>
+          </div>
+
+          <!-- Clickable Product Links -->
+          <div style="padding:0 16px; display:flex; flex-direction:column; gap:8px;">
+
+            <a href="javascript:void(0)" onclick="demoClick(event,'6-Week Fat Loss Program','₹1,999')" aria-label="View 6-Week Fat Loss Program" style="
+              display:flex; align-items:center; gap:10px;
+              background:rgba(255,77,0,0.1); border:1px solid rgba(255,77,0,0.2);
+              border-radius:12px; padding:12px 14px; text-decoration:none; color:var(--text);
+              transition:all 0.2s;
+            " onmouseover="this.style.background='rgba(255,77,0,0.18)'" onmouseout="this.style.background='rgba(255,77,0,0.1)'">
+              <div style="width:34px;height:34px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">📚</div>
+              <div>
+                <div style="font-size:12px;font-weight:600;">6-Week Fat Loss Program</div>
+                <div style="font-size:11px;color:var(--orange);font-weight:700;">₹1,999</div>
+              </div>
+              <div style="margin-left:auto;font-size:14px;color:var(--muted);">→</div>
+            </a>
+
+            <a href="javascript:void(0)" onclick="demoClick(event,'Free Nutrition Masterclass','FREE')" style="
+              display:flex; align-items:center; gap:10px;
+              background:rgba(255,184,0,0.08); border:1px solid rgba(255,184,0,0.2);
+              border-radius:12px; padding:12px 14px; text-decoration:none; color:var(--text);
+              transition:all 0.2s;
+            " onmouseover="this.style.background='rgba(255,184,0,0.15)'" onmouseout="this.style.background='rgba(255,184,0,0.08)'">
+              <div style="width:34px;height:34px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🎥</div>
+              <div>
+                <div style="font-size:12px;font-weight:600;">Free Nutrition Masterclass</div>
+                <div style="font-size:11px;color:var(--gold);font-weight:700;">FREE</div>
+              </div>
+              <div style="margin-left:auto;font-size:14px;color:var(--muted);">→</div>
+            </a>
+
+            <a href="javascript:void(0)" onclick="demoClick(event,'1:1 Consultation','₹3,500')" style="
+              display:flex; align-items:center; gap:10px;
+              background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
+              border-radius:12px; padding:12px 14px; text-decoration:none; color:var(--text);
+              transition:all 0.2s;
+            " onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+              <div style="width:34px;height:34px;background:#333;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">📞</div>
+              <div>
+                <div style="font-size:12px;font-weight:600;">Book 1:1 Consultation</div>
+                <div style="font-size:11px;color:#aaa;font-weight:700;">₹3,500 / session</div>
+              </div>
+              <div style="margin-left:auto;font-size:14px;color:var(--muted);">→</div>
+            </a>
+
+            <a href="javascript:void(0)" onclick="demoClick(event,'Home Workout PDF Bundle','₹499')" style="
+              display:flex; align-items:center; gap:10px;
+              background:rgba(255,77,0,0.1); border:1px solid rgba(255,77,0,0.2);
+              border-radius:12px; padding:12px 14px; text-decoration:none; color:var(--text);
+              transition:all 0.2s;
+            " onmouseover="this.style.background='rgba(255,77,0,0.18)'" onmouseout="this.style.background='rgba(255,77,0,0.1)'">
+              <div style="width:34px;height:34px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">💪</div>
+              <div>
+                <div style="font-size:12px;font-weight:600;">Home Workout PDF Bundle</div>
+                <div style="font-size:11px;color:var(--orange);font-weight:700;">₹499</div>
+              </div>
+              <div style="margin-left:auto;font-size:14px;color:var(--muted);">→</div>
+            </a>
+
+          </div>
+
+          <div style="text-align:center; margin-top:16px; font-size:10px; color:#333;">Powered by CreatorLink</div>
+        </div>
+      </div>
+
+      <!-- DEMO INFO PANEL -->
+      <div>
+        <div style="margin-bottom:28px;">
+          <div style="font-size:11px; letter-spacing:2px; color:var(--orange); font-weight:600; margin-bottom:10px;">TRY IT</div>
+          <h3 style="font-family:'Syne',sans-serif; font-size:22px; font-weight:700; margin-bottom:8px; letter-spacing:-0.5px;">Click any product link →</h3>
+          <p style="color:var(--muted); font-size:14px; line-height:1.7;">See exactly what your buyers experience. Every link opens a checkout popup with UPI payment options.</p>
+        </div>
+
+        <!-- Fake checkout popup preview -->
+        <div id="demoCheckout" style="
+          display:none;
+          background:#0d0d0d; border:1px solid rgba(255,77,0,0.3);
+          border-radius:14px; padding:24px; margin-bottom:24px;
+          animation: fadeInUp 0.3s ease;
+        ">
+          <div style="font-size:11px; color:var(--orange); font-weight:600; letter-spacing:2px; margin-bottom:12px;">CHECKOUT</div>
+          <div id="demoProductName" style="font-family:'Syne',sans-serif; font-size:18px; font-weight:700; margin-bottom:4px;"></div>
+          <div id="demoProductPrice" style="font-size:22px; font-weight:800; color:var(--orange); margin-bottom:20px;"></div>
+          <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px;">
+            <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:10px 14px; font-size:13px; display:flex; align-items:center; gap:8px;">
+              <span style="font-size:16px;">📱</span> Pay via UPI (GPay, PhonePe, Paytm)
+            </div>
+            <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:10px 14px; font-size:13px; display:flex; align-items:center; gap:8px;">
+              <span style="font-size:16px;">💳</span> Debit / Credit Card
+            </div>
+            <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:10px 14px; font-size:13px; display:flex; align-items:center; gap:8px;">
+              <span style="font-size:16px;">🏦</span> Net Banking / EMI
+            </div>
+          </div>
+          <div style="background:rgba(0,200,100,0.08); border:1px solid rgba(0,200,100,0.2); border-radius:8px; padding:10px 14px; font-size:12px; color:#4ade80; text-align:center;">
+            ✅ After payment → Product delivered on WhatsApp in 60 seconds
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px; padding:16px;">
+            <div style="font-family:'Syne',sans-serif; font-size:24px; font-weight:800; color:var(--orange);">₹1.2L</div>
+            <div style="font-size:12px; color:var(--muted); margin-top:2px;">Priya earned last month</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px; padding:16px;">
+            <div style="font-family:'Syne',sans-serif; font-size:24px; font-weight:800; color:var(--gold);">340</div>
+            <div style="font-size:12px; color:var(--muted); margin-top:2px;">Sales this month</div>
+          </div>
+        </div>
+
+        <button onclick="closeDemo()" style="
+          margin-top:20px; width:100%;
+          background:var(--orange); color:white; border:none;
+          padding:13px; border-radius:8px; font-size:14px; font-weight:600;
+          cursor:pointer; font-family:'DM Sans',sans-serif;
+          transition:all 0.2s;
+        " onmouseover="this.style.background='#ff6620'" onmouseout="this.style.background='var(--orange)'">
+          Join Waitlist & Build My Store →
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // ==========================================
+  // GOOGLE SHEETS WAITLIST INTEGRATION
+  // HOW TO SET UP (5 minutes, totally free):
+  // 1. Go to docs.google.com/spreadsheets → create new sheet
+  // 2. Name columns: Timestamp | Email | Source
+  // 3. Go to Extensions → Apps Script → paste this code:
+  //    function doPost(e){var sheet=SpreadsheetApp.getActiveSheet();var data=JSON.parse(e.postData.contents);sheet.appendRow([new Date(),data.email,data.source]);return ContentService.createTextOutput("OK");}
+  // 4. Click Deploy → New Deployment → Web App → Execute as Me → Anyone → Deploy
+  // 5. Copy the Web App URL and paste it below replacing YOUR_GOOGLE_SCRIPT_URL
+  // ==========================================
+
+  const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL'; // 👈 Paste your URL here
+
+  let waitlistCount = 2400; // Starting count shown to users
+
+  async function submitWaitlist(event) {
+    event.preventDefault();
+    const emailInput = document.getElementById('waitlistEmail');
+    const btn = document.getElementById('waitlistBtn');
+    const form = document.getElementById('waitlistForm');
+    const success = document.getElementById('waitlistSuccess');
+
+    if (!emailInput) {
+      // Handle CTA section form (no id)
+      event.target.querySelector('button').textContent = '✅ You\'re in!';
+      return;
+    }
+
+    const email = emailInput.value;
+    btn.textContent = 'Joining...';
+    btn.disabled = true;
+
+    try {
+      // Send to Google Sheets
+      if (GOOGLE_SCRIPT_URL !== 'YOUR_GOOGLE_SCRIPT_URL') {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, source: 'hero-form' })
+        });
+      }
+    } catch(err) {
+      // Silently continue — don't block UX if fetch fails
+    }
+
+    // Always show success to user
+    waitlistCount++;
+    form.style.display = 'none';
+    success.style.display = 'flex';
+
+    // Update all waitlist counters on page
+    document.querySelectorAll('.waitlist-count').forEach(el => {
+      el.textContent = waitlistCount.toLocaleString('en-IN') + '+';
+    });
+  }
+
+  // ==========================================
+  // DEMO MODAL
+  // ==========================================
+  function openDemo() {
+    document.getElementById('demoModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDemo() {
+    document.getElementById('demoModal').style.display = 'none';
+    document.body.style.overflow = '';
+    // Scroll to waitlist form
+    document.getElementById('waitlistEmail') && document.getElementById('waitlistEmail').focus();
+  }
+
+  function demoClick(event, productName, price) {
+    event.preventDefault();
+    const checkout = document.getElementById('demoCheckout');
+    document.getElementById('demoProductName').textContent = productName;
+    document.getElementById('demoProductPrice').textContent = price;
+    checkout.style.display = 'block';
+    checkout.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // Close modal on backdrop click
+  document.getElementById('demoModal').addEventListener('click', function(e) {
+    if (e.target === this) closeDemo();
+  });
+
+  // Close modal on Escape key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeDemo();
+  });
+
+  // ==========================================
+  // CUSTOM CURSOR — desktop only
+  // ==========================================
+  const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  if (!isTouchDevice) {
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx - 6 + 'px';
+      cursor.style.top = my - 6 + 'px';
+    });
+
+    function animateRing() {
+      rx += (mx - rx - 18) * 0.12;
+      ry += (my - ry - 18) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+  }
+
+  // ==========================================
+  // SCROLL REVEAL
+  // ==========================================
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => obs.observe(r));
+</script>
+</body>
+</html>
